@@ -35,7 +35,9 @@ class Node extends Common
     }
     public function add(){
         if (request()->isGet()){
-            return view();
+            $node = new NodeModel();
+            $node = $node->getNode();
+            return view("",["node"=>$node]);
         }
         if(request()->isPost()){
 //            $data = input("post.");
@@ -94,16 +96,16 @@ class Node extends Common
         if (request()->isGet()){
             $node = new NodeModel();
             $node = $node->getNode();
-            var_dump($node); exit();
+//            var_dump($node); exit();
             return view("",["node"=>$node]);
         }
         if (request()->isPost()){
-            $admin_name = request()->post("admin_name");
+            $role_name = request()->post("role_name");
             $node_id = request()->post("node_name");
             $node_id = implode(",",$node_id);
-            $data = ["admin_name"=>$admin_name,"node_id"=>$node_id];
+            $data = ["role_name"=>$role_name,"node_id"=>$node_id];
 //            var_dump($data); exit();
-            $res = Db::table('shop_admin')
+            $res = Db::table('shop_role')
                 ->data($data)
                 ->insert();
             if($res){

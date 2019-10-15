@@ -30,6 +30,21 @@
                     <input type="password" name="admin_repwd" size="40" class="inpMain" />
                 </td>
             </tr>
+<!--            <tr>-->
+<!--                <td align="right">赋予角色</td>-->
+<!--                <td>-->
+<!--                    <input type="password" name="role_id" size="40" class="inpMain" />-->
+<!--                </td>-->
+<!--            </tr>-->
+            <tr>
+                <td width="100" align="right">所拥权限</td>
+
+                <td>
+                    {foreach $node as $key=>$vo }
+                    <input type="checkbox" name="node_name[]" value='{$vo.node_id}'/>{$vo.node_name}
+                    {/foreach}
+                </td>
+            </tr>
             <tr>
                 <td></td>
                 <td>

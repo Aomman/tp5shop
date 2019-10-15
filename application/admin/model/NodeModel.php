@@ -30,8 +30,8 @@ class NodeModel extends Model
         return $admin;
     }
     public function getAdminNode(){
-        $admin = Db::table('shop_admin')
-            ->leftJoin('shop_node','shop_admin.admin_id = shop_node.node_id')
+        $admin = Db::table('shop_role')
+            ->leftJoin('shop_node','shop_role.node_id = shop_node.node_id')
             ->select();
         return $admin;
     }
