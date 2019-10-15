@@ -16,7 +16,7 @@
  * 别出bug
  */
 namespace app\admin\controller;
-use app\admin\model\Catemodel;
+use app\admin\model\CateModel;
 use app\index\validate\Admin;
 use think\captcha\Captcha;
 use think\Controller;

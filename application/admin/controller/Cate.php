@@ -16,7 +16,7 @@
  * 别出bug
  */
 namespace app\admin\controller;
-use app\admin\model\Catemodel;
+use app\admin\model\CateModel;
 use app\index\validate\Admin;
 use think\captcha\Captcha;
 use think\Controller;
@@ -27,15 +27,15 @@ class Cate extends Common
     public function index(){
         //判断接值方式
         if (request()->isGet()) {
-            $cate=new Catemodel();
+            $cate=new CateModel();
             $cates=$cate->getCateAll();
 //            var_dump($cates);exit();
             return view("",["cates"=>$cates]);
         }
     }
-    public function add(){
+    public function append(){
         if (request()->isGet()) {
-            $cate=new Catemodel();
+            $cate=new CateModel();
             $cates=$cate->getCateAll();
 //            var_dump($cates);exit();
             return view("",["cates"=>$cates]);

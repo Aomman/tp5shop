@@ -21,7 +21,7 @@ namespace app\admin\model;
 use think\Db;
 use think\Model;
 
-class Catemodel extends Model
+class CateModel extends Model
 {
     public function getCateAll()
     {

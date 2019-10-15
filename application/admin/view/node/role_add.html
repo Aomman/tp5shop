@@ -1,0 +1,34 @@
+{extend name="public/base" /}
+{block name="main"}
+<div id="dcMain">
+    <!-- 当前位置 -->
+    <div id="urHere">DouPHP 管理中心<b>></b><strong>添加角色</strong> </div>   <div id="manager" class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+    <h3><a href="{:url('node/role')}" class="actionBtn">返回列表</a>角色列表</h3>
+    <form action="" method="post">
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <tr>
+                <td width="100" align="right">角色名称</td>
+                <td>
+                    <input type="text" name="admin_name" size="40" class="inpMain" />
+                </td>
+            </tr>
+            <tr>
+                <td width="100" align="right">所拥权限</td>
+
+                <td>
+                    {foreach $node as $key=>$vo }
+                    <input type="checkbox" name="node_name[]" value='{$vo.node_id}'/>{$vo.node_name}
+                    {/foreach}
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn" value="提交" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</div>
+{/block}
