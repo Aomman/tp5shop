@@ -13,14 +13,16 @@
             <th width="60" align="center">排序</th>
             <th width="80" align="center">操作</th>
         </tr>
+        {foreach $brand as $key=>$vo }
         <tr>
-            <td align="left"> <a href="product.php?cat_id=1"></a></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td align="center"></td>
+            <td align="left"> <a href="product.php?cat_id=1"><img src="http://www.tp5shop.com/uploads/brand/{$vo.brand_logo}" width="100px"></a></td>
+            <td>{:$vo.brand_name}</td>
+            <td>{:$vo.brand_url}</td>
+            <td>{:$vo.brand_desc}</td>
+            <td align="center">{:$vo.brand_order}</td>
             <td align="center"><a href="product_category.php?rec=edit&cat_id=1">编辑</a> | <a href="product_category.php?rec=del&cat_id=1">删除</a></td>
         </tr>
+        {/foreach}
     </table>
 </div>
 </div>
