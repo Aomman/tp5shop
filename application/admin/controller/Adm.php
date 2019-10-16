@@ -16,46 +16,31 @@
  * 别出bug
  */
 namespace app\admin\controller;
-use app\admin\model\CateModel;
-use app\admin\model\NodeModel;
-use app\index\validate\Admin;
-use think\captcha\Captcha;
+
+use app\admin\model\Role;
 use think\Controller;
-use think\Db;
-use think\Validate;
-class Adm extends Common
-{
+use think\facade\Session;
+use think\validate\ValidateRule;
+
+class Adm extends Common{
     public function show(){
-        if (request()->isGet()){
-            $admin=new NodeModel();
-            $admin=$admin->getNodeAll();
-//            var_dump($admin);exit();
-            return view("",["admin"=>$admin]);
-        }
+        $admin=(new \app\admin\model\Admin())->all();
+        return view('',["admin"=>$admin]);
     }
+    //添加管理员
     public function add(){
         if (request()->isGet()){
-            $node = new NodeModel();
-            $node = $node->getNode();
-            return view("",["node"=>$node]);
+            $role=(new Role())->all();
+            return view('',["role"=>$role]);
         }
         if(request()->isPost()){
-//            $data = input("post.");
-            $admin_name=request()->post("admin_name");
-            $admin_email=request()->post("admin_email");
-            $admin_pwd=md5(request()->post("admin_pwd"));
-            $add_time = time();
-            $last_login = time()+$add_time;
-            $data=["admin_name"=>$admin_name,"admin_email"=>$admin_email,"admin_pwd"=>$admin_pwd,"add_time"=>$add_time,"last_login"=>$last_login];
-            //连接数据库
-            $res = Db::table('shop_admin')
-                ->data($data)
-                ->insert();
-            if($res){
-                $this->success("添加分类成功","node/show");
-            }else{
-                $this->error("添加失败");
-            }
+          $adminModel=new \app\admin\model\Admin();
+            $adminModel->admin_name=request()->post("admin_name");
+            $adminModel->admin_pwd=md5(request()->post("admin_pwd"));
+            $adminModel->add_time=time();
+            $adminModel->save();
+            $adminModel->role()->saveAll(request()->post("role_id"));
+            $this->success("添加管理员成功",'show');
         }
     }
 }

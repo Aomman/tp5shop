@@ -1,26 +1,36 @@
 {extend name="public/base" /}
 {block name="main"}
+<!-- 当前位置 -->
 <div id="dcMain">
-    <!-- 当前位置 -->
     <div id="urHere">DouPHP 管理中心<b>></b><strong>网站管理员</strong> </div>   <div id="manager" class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
-    <h3><a href="{:url('adm/add')}" class="actionBtn">添加管理员</a>网站管理员</h3>
+    <h3><a href="{:url('Adm/add')}" class="actionBtn">添加管理员</a>网站管理员</h3>
     <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
         <tr>
             <th width="30" align="center">编号</th>
             <th align="left">管理员名称</th>
-            <th align="center">E-mail地址</th>
-            <th align="center">添加时间</th>
-            <th align="center">最后登录时间</th>
+            <th align="center">拥有角色</th>
+            <th align="center">拥有权限</th>
+            <th align="center">注册时间</th>
             <th align="center">操作</th>
         </tr>
-        {foreach $admin as $key=>$vo }
+        {foreach $admin as $key=>$val}
         <tr>
-            <td align="center">{$vo.admin_id}</td>
-            <td>{$vo.admin_name}</td>
-            <td align="center">{$vo.admin_email}</td>
-            <td align="center">{$vo.add_time|date="Y-m-d H:i:s"}</td>
-            <td align="center">{$vo.last_login|date="Y-m-d H:i:s"}</td>
-            <td align="center"><a href="addmanager.html?rec=edit&id=1">编辑</a> | <a href="manager.html?rec=del&id=1">删除</a></td>
+            <td align="center">{$val.admin_id}</td>
+            <td>{$val.admin_name}</td>
+            <td align="left">
+                {foreach $val->role as $k=>$v}
+                {$v->role_name}
+                {/foreach}
+            </td>
+            <td align="left">
+                {foreach $val->role as $k=>$v}
+                {foreach $v->node as $k1=>$v1}
+                {$v1->node_name},
+                {/foreach}
+                {/foreach}
+            </td>
+            <td>{$val.add_time|date='Y-m-d H:i'}</td>
+            <td align="center"><a >编辑</a> | <a >删除</a></td>
         </tr>
         {/foreach}
     </table>

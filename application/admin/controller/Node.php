@@ -46,7 +46,7 @@ class Node extends Common
                 ->data($data)
                 ->insert();
             if($res){
-                $this->success("添加分类成功","node/node");
+                $this->success("添加分类成功","node/show");
             }else{
                 $this->error("添加失败");
             }

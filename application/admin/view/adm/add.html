@@ -31,11 +31,10 @@
                 </td>
             </tr>
             <tr>
-                <td width="100" align="right">所拥权限</td>
-
+                <td width="100" align="right">所拥角色</td>
                 <td>
-                    {foreach $node as $key=>$vo }
-                    <input type="checkbox" name="node_name[]" value='{$vo.node_id}'/>{$vo.node_name}
+                    {foreach $role as $k=>$v}
+                    <input type="checkbox" name="role_id[]" value="{$v.role_id}" size="40" />{$v.role_name}
                     {/foreach}
                 </td>
             </tr>
